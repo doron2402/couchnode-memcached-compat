@@ -1,11 +1,6 @@
 couchnode - node-memcached compatibility tests
 ======================
 
-# couchnode - node-memcached compatibility tests
-
-
-## Features
-
 ## Installation
 
     git clone git@github.com:BryanDonovan/couchnode-memcached-compat.git
