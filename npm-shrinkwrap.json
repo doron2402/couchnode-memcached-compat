@@ -1,0 +1,49 @@
+{
+  "name": "couchnode-memcached-compat",
+  "version": "0.0.1",
+  "dependencies": {
+    "couchbase": {
+      "version": "1.0.0-beta",
+      "from": "couchbase@git+https://github.com/couchbase/couchnode.git",
+      "resolved": "git+https://github.com/couchbase/couchnode.git#e344b4098a8861bc20a107f69322b66ce97d2fc9",
+      "dependencies": {
+        "bindings": {
+          "version": "1.0.0",
+          "from": "bindings@~1.0.0"
+        }
+      }
+    },
+    "memcached": {
+      "version": "0.2.5",
+      "from": "memcached@0.2.5",
+      "resolved": "https://registry.npmjs.org/memcached/-/memcached-0.2.5.tgz",
+      "dependencies": {
+        "hashring": {
+          "version": "0.0.8",
+          "from": "hashring@0.0.x",
+          "dependencies": {
+            "bisection": {
+              "version": "0.0.3",
+              "from": "bisection@"
+            },
+            "simple-lru-cache": {
+              "version": "0.0.1",
+              "from": "simple-lru-cache@0.0.x"
+            }
+          }
+        },
+        "jackpot": {
+          "version": "0.0.6",
+          "from": "jackpot@>=0.0.6",
+          "dependencies": {
+            "retry": {
+              "version": "0.6.0",
+              "from": "retry@0.6.0",
+              "resolved": "https://registry.npmjs.org/retry/-/retry-0.6.0.tgz"
+            }
+          }
+        }
+      }
+    }
+  }
+}
