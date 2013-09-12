@@ -72,8 +72,7 @@ describe("couchnode / node-memcached compatibility tests", function () {
                 key = 'foo' + support.random.string(8);
                 data = get_data();
 
-                //cb_client.set(key, data, {format: 'json', flags: 2}, function (err, result) {
-                cb_client.set(key, data, function (err, result) {
+                cb_client.set(key, data, {flags: 2}, function (err, result) {
                     assert.ifError(err);
                     assert.ok(result);
                     done();
@@ -83,6 +82,7 @@ describe("couchnode / node-memcached compatibility tests", function () {
             it("can be read by the couchbase client", function (done) {
                 cb_client.get(key, function (err, result) {
                     assert.ifError(err);
+                    result.value = JSON.parse(result.value);
                     assert.deepEqual(result.value, data);
                     done();
                 });
@@ -91,14 +91,6 @@ describe("couchnode / node-memcached compatibility tests", function () {
             it("can be read by memcached client", function (done) {
                 mc_client.get(key, function (err, result) {
                     assert.ifError(err);
-                    // Since we have already saved tons of data via the
-                    // memcached client, it would be good if the result would
-                    // 'just work' like it does when the data is saved via
-                    // memcached client.
-                    //
-                    // The memcached client parses data via JSON.parse() when
-                    // the flags are set to '2'.
-                    // See: https://github.com/3rd-Eden/node-memcached/blob/master/lib/memcached.js#L496
                     assert.deepEqual(result, data);
                     done();
                 });
