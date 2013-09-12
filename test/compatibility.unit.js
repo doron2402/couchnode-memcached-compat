@@ -70,16 +70,14 @@ describe("couchnode / node-memcached compatibility tests", function () {
     });
 
     context("when data is an object", function () {
-        context("and data is saved via memcached client", function () {
-            before(function (done) {
-                key = 'foo' + support.random.string(8);
-                data = get_data();
+        beforeEach(function () {
+            key = 'foo' + support.random.string(8);
+            data = get_data();
+        });
 
-                mc_client.set(key, data, 0, function (err, result) {
-                    assert.ifError(err);
-                    assert.ok(result);
-                    done();
-                });
+        context("and data is saved via memcached client", function () {
+            beforeEach(function (done) {
+                mc_client.set(key, data, 0, done);
             });
 
             it("can be read by the couchbase client", function (done) {
@@ -101,15 +99,8 @@ describe("couchnode / node-memcached compatibility tests", function () {
         });
 
         context("and data is saved via couchbase client", function () {
-            before(function (done) {
-                key = 'foo' + support.random.string(8);
-                data = get_data();
-
-                cb_client.set(key, data, {flags: FLAG_JSON}, function (err, result) {
-                    assert.ifError(err);
-                    assert.ok(result);
-                    done();
-                });
+            beforeEach(function (done) {
+                cb_client.set(key, data, {flags: FLAG_JSON}, done);
             });
 
             it("can be read by the couchbase client", function (done) {
@@ -132,16 +123,14 @@ describe("couchnode / node-memcached compatibility tests", function () {
     });
 
     context("when data is a number", function () {
-        context("and data is saved via memcached client", function () {
-            before(function (done) {
-                key = 'foo' + support.random.string(8);
-                data = support.random.number();
+        beforeEach(function () {
+            key = 'foo' + support.random.string(8);
+            data = support.random.number();
+        });
 
-                mc_client.set(key, data, 0, function (err, result) {
-                    assert.ifError(err);
-                    assert.ok(result);
-                    done();
-                });
+        context("and data is saved via memcached client", function () {
+            beforeEach(function (done) {
+                mc_client.set(key, data, 0, done);
             });
 
             it("can be read by the couchbase client", function (done) {
@@ -163,15 +152,8 @@ describe("couchnode / node-memcached compatibility tests", function () {
         });
 
         context("and data is saved via couchbase client", function () {
-            before(function (done) {
-                key = 'foo' + support.random.string(8);
-                data = support.random.number();
-
-                cb_client.set(key, data, {flags: FLAG_NUMERIC}, function (err, result) {
-                    assert.ifError(err);
-                    assert.ok(result);
-                    done();
-                });
+            beforeEach(function (done) {
+                cb_client.set(key, data, {flags: FLAG_NUMERIC}, done);
             });
 
             it("can be read by the couchbase client", function (done) {
@@ -194,16 +176,14 @@ describe("couchnode / node-memcached compatibility tests", function () {
     });
 
     context("when data is a string", function () {
-        context("and data is saved via memcached client", function () {
-            before(function (done) {
-                key = 'foo' + support.random.string(8);
-                data = support.random.string();
+        beforeEach(function () {
+            key = 'foo' + support.random.string(8);
+            data = support.random.string();
+        });
 
-                mc_client.set(key, data, 0, function (err, result) {
-                    assert.ifError(err);
-                    assert.ok(result);
-                    done();
-                });
+        context("and data is saved via memcached client", function () {
+            beforeEach(function (done) {
+                mc_client.set(key, data, 0, done);
             });
 
             it("can be read by the couchbase client", function (done) {
@@ -225,15 +205,8 @@ describe("couchnode / node-memcached compatibility tests", function () {
         });
 
         context("and data is saved via couchbase client", function () {
-            before(function (done) {
-                key = 'foo' + support.random.string(8);
-                data = support.random.string();
-
-                cb_client.set(key, data, {flags: FLAG_RAW}, function (err, result) {
-                    assert.ifError(err);
-                    assert.ok(result);
-                    done();
-                });
+            beforeEach(function (done) {
+                cb_client.set(key, data, {flags: FLAG_RAW}, done);
             });
 
             it("can be read by the couchbase client", function (done) {
@@ -259,19 +232,14 @@ describe("couchnode / node-memcached compatibility tests", function () {
     // FIXME: I'm probably doing something wrong here.. not sure how to correctly save the data.
     //
     context("when data is a binary image", function () {
-        before(function () {
+        beforeEach(function () {
             data = fs.readFileSync(__dirname + '/support/fixtures/logo.png');
+            key = 'foo' + support.random.string(8);
         });
 
         context("and data is saved via memcached client", function () {
-            before(function (done) {
-                key = 'foo' + support.random.string(8);
-
-                mc_client.set(key, data, 0, function (err, result) {
-                    assert.ifError(err);
-                    assert.ok(result);
-                    done();
-                });
+            beforeEach(function (done) {
+                mc_client.set(key, data, 0, done);
             });
 
             // FIXME: This fails. It appears that the returned data has some "\" characters in it.
@@ -303,15 +271,9 @@ describe("couchnode / node-memcached compatibility tests", function () {
         });
 
         context("and data is saved via couchbase client", function () {
-            before(function (done) {
-                key = 'foo' + support.random.string(8);
-                data = data.toString('binary');
-
-                cb_client.set(key, data, {flags: FLAG_BINARY}, function (err, result) {
-                    assert.ifError(err);
-                    assert.ok(result);
-                    done();
-                });
+            beforeEach(function (done) {
+                data = data.toString('binary'); // not sure if this is the right thing to do.
+                cb_client.set(key, data, {flags: FLAG_BINARY}, done);
             });
 
             it("can be read by the couchbase client", function (done) {
