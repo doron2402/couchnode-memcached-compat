@@ -20,6 +20,8 @@ Run the tests:
 
     make test
 
+Currently the only test in the suite is ``test/compatibility.unit.js``.
+
 ## Contribute
 
 If you would like to contribute to the project, please fork it and send us a pull request.  Please add tests
