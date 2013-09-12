@@ -12,8 +12,10 @@ cover:
 check-coverage:
 	$(ISTANBUL) check-coverage $(COVERAGE_OPTS)
 
-test: cover check-coverage
+#test: cover check-coverage
 
+test:
+	test/run.js
 
 test-cov: cover check-coverage
 	open coverage/lcov-report/index.html

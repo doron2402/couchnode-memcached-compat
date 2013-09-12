@@ -1,21 +1,14 @@
-{package_name}
+couchnode - node-memcached compatibility tests
 ======================
 
-# Title
+# couchnode - node-memcached compatibility tests
 
 
 ## Features
 
-* Foo
-* Bar
-
 ## Installation
 
-    npm install {package_name}
-
-## Overview
-
-## Usage Examples
+    git clone git@github.com:BryanDonovan/couchnode-memcached-compat.git
 
 
 ## Tests
@@ -24,9 +17,11 @@ To run tests, first run:
 
     npm install
 
-Run the tests and JShint:
+Then modify the settings.js file (and/or set up a bucket named 'test' with proxy port 11216.
 
-    make
+Run the tests:
+
+    make test
 
 ## Contribute
 
@@ -36,4 +31,4 @@ for any new features or bug fixes.  Also run ``make`` before submitting the pull
 
 ## License
 
-{package_name} licensed under the MIT license. See LICENSE file.
+couchnode-memcached-compat licensed under the MIT license. See LICENSE file.
