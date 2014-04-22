@@ -18,7 +18,7 @@ Then modify the settings.js file (and/or set up a bucket named 'test' with proxy
 
 Run the tests:
 
-    make test
+    `npm start`
 
 Currently the only test in the suite is ``test/compatibility.unit.js``.
 
