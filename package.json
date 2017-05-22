@@ -1,29 +1,33 @@
 {
-    "name": "couchnode-memcached-compat",
-    "version": "0.0.1",
-    "description": "Testing compatibility between couchnode and node-memcached",
-    "author": "Bryan Donovan",
-    "engines": {
-        "node": ">= 0.8.11"
-    },
-    "main": "./index",
-    "dependencies": {
-        "couchbase": "git+https://github.com/couchbase/couchnode.git",
-        "memcached": "0.2.5"
-    },
-    "scripts": {
-	"start": "make test"
-    },
-    "devDependencies": {
-        "Faker" : "0.5.6",
-        "jshint": "1.1.0",
-        "istanbul": "0.1.29",
-        "mocha": "1.9.0",
-        "optimist" : "0.3.5",
-        "sinon": "1.6.0"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/BryanDonovan/couchnode-memcached-compat"
-    }
+  "name": "couchnode-memcached-compat",
+  "version": "0.0.1",
+  "description": "Testing compatibility between couchnode and node-memcached",
+  "author": "Bryan Donovan",
+  "engines": {
+    "node": ">= 0.8.11"
+  },
+  "main": "./index",
+  "dependencies": {
+    "couchbase": "git+https://github.com/couchbase/couchnode.git",
+    "memcached": "0.2.5",
+    "snyk": "^1.30.1"
+  },
+  "scripts": {
+    "start": "make test",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
+  },
+  "devDependencies": {
+    "Faker": "0.5.6",
+    "jshint": "1.1.0",
+    "istanbul": "0.1.29",
+    "mocha": "1.9.0",
+    "optimist": "0.3.5",
+    "sinon": "1.6.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/BryanDonovan/couchnode-memcached-compat"
+  },
+  "snyk": true
 }
